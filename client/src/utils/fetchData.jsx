@@ -47,8 +47,8 @@ const fetchData = async (url, options) => {
   // console.log(data);
   return data;
 };
-
- const BASE_URL = "http://localhost:5000";
+const BASE_URL="https://aquafitness.onrender.com"
+ //const BASE_URL = "http://localhost:5000";
 //const BASE_URL="https://gym-master.onrender.com";
 
 export { fetchData, exerciseOptions, youtubeExerciseOptions, BASE_URL };
