@@ -1,13 +1,11 @@
-
-// aos 
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from 'react-hot-toast';
 import { Input } from "../components";
 import { BASE_URL } from '../utils/fetchData';
-import AOS from 'aos'; 
-import 'aos/dist/aos.css'; 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -30,9 +28,8 @@ const Register = () => {
       return;
     }
 
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    if (!passwordPattern.test(password)) {
-      toast.error("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number");
+    if (!password) {
+      toast.error("please enter a password");
       return;
     }
 
@@ -46,8 +43,6 @@ const Register = () => {
       toast.error("Phone number must start with 9, 8, 7, or 6 and contain exactly 10 digits");
       return;
     }
-
-    console.log(name, password, email, city, contact);
 
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/auth/register`, {
@@ -70,83 +65,103 @@ const Register = () => {
     }
   };
 
-  // Initialize AOS on component mount
   useEffect(() => {
-    AOS.init({    duration: 1000, // Animation duration in milliseconds
-      easing: 'ease-in-out', // Animation easing
-      offset: 120, // Trigger animation before the element comes into view
-      once: true });
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      offset: 120,
+      once: true
+    });
   }, []);
 
   return (
-    <div className='bg-gray-900'>
-      <div className='container mx-auto px-6'>
-        <form
-          className='flex w-full h-screen justify-center items-center flex-col gap-5'
-          onSubmit={onSubmit}
-          data-aos="fade-up" // Add AOS animation
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-700 via-blue-800 to-black p-6">
+      <div
+        className="w-full max-w-2xl bg-white bg-opacity-10 backdrop-blur-md rounded-3xl shadow-2xl p-10 border border-gray-300 border-opacity-20"
+        data-aos="zoom-in"
+      >
+        <h2
+          className="text-center text-5xl font-extrabold text-white mb-10 tracking-wide drop-shadow"
+          data-aos="fade-down"
         >
-          <h2 className='text-center text-4xl text-white font-bold'>Register</h2>
+          🚀 Register
+        </h2>
 
-          <Input 
-            type="text"
-            placeholder="Name"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            minLength="4"
-            maxLength="30"
-            data-aos="zoom-in" // Add AOS animation
-          />
+        <form onSubmit={onSubmit} className="flex flex-col gap-6">
+          <div data-aos="fade-up">
+            <Input
+              type="text"
+              placeholder="👤 Name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              minLength="4"
+              maxLength="30"
+              className="bg-white bg-opacity-20 text-white placeholder-white rounded-md p-3"
+            />
+          </div>
 
-          <Input 
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            data-aos="zoom-in" // Add AOS animation
-          />
+          <div data-aos="fade-up" data-aos-delay="100">
+            <Input
+              type="email"
+              placeholder="📧 Email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-white bg-opacity-20 text-white placeholder-white rounded-md p-3"
+            />
+          </div>
 
-          <Input 
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            data-aos="zoom-in" // Add AOS animation
-          />
+          <div data-aos="fade-up" data-aos-delay="200">
+            <Input
+              type="password"
+              placeholder="🔒 Password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="bg-white bg-opacity-20 text-white placeholder-white rounded-md p-3"
+            />
+          </div>
 
-          <Input 
-            type="text"
-            placeholder="City"
-            name="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            minLength="4"
-            maxLength="35"
-            data-aos="zoom-in" // Add AOS animation
-          />
+          <div data-aos="fade-up" data-aos-delay="300">
+            <Input
+              type="text"
+              placeholder="🏙️ City"
+              name="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              minLength="4"
+              maxLength="35"
+              className="bg-white bg-opacity-20 text-white placeholder-white rounded-md p-3"
+            />
+          </div>
 
-          <Input 
-            type="text"
-            placeholder="Phone"
-            name="phone"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
-            data-aos="zoom-in" // Add AOS animation
-          />
+          <div data-aos="fade-up" data-aos-delay="400">
+            <Input
+              type="text"
+              placeholder="📞 Phone"
+              name="phone"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
+              className="bg-white bg-opacity-20 text-white placeholder-white rounded-md p-3"
+            />
+          </div>
 
-          <Link to="/login" className='text-white opacity-85 font-medium' data-aos="fade-in">
-            Already a registered user? <span className='underline text-blue-600 font-semibold'>Login</span>
+          <Link
+            to="/login"
+            className="text-center text-sm text-white opacity-80 hover:underline mt-2"
+            data-aos="fade-in"
+          >
+            Already a registered user?{" "}
+            <span className="text-cyan-300 underline">Login</span>
           </Link>
 
-          <button 
-            type='submit' 
-            className='btn px-5 py-2 font-normal outline-none border border-white rounded-sm text-xl text-white hover:text-black hover:bg-white transition-all ease-in w-full max-w-[750px]'
-            data-aos="slide-up" // Add AOS animation
+          <button
+            type="submit"
+            className="w-full mt-4 py-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:from-yellow-500 hover:to-pink-500 text-white font-bold text-lg rounded-xl shadow-lg transition-all duration-300"
+            data-aos="flip-up"
           >
-            Submit
+            ✨ Submit
           </button>
         </form>
       </div>

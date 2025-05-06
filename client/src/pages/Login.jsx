@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -41,51 +39,58 @@ const Login = () => {
   };
 
   useEffect(() => {
-    AOS.init();
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+    });
   }, []);
 
   return (
-    <div className='bg-gray-900'>
-      <div className='container mx-auto px-6'>
-        <form 
-          className='flex w-full h-screen justify-center items-center flex-col gap-5' 
-          onSubmit={onSubmit}
-          data-aos="fade-up" // Add AOS animation
-        >
-          <h2 className='text-center text-4xl text-white font-bold'>Login</h2>
+    <div className="min-h-screen bg-gradient-to-tr from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center px-4">
+      <div 
+        className="bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md rounded-3xl shadow-2xl max-w-md w-full p-10 sm:p-12"
+        data-aos="fade-up"
+      >
+        <h2 className="text-center text-4xl font-extrabold text-gray-900 mb-8 tracking-wide drop-shadow-md">
+          Login
+        </h2>
 
-          <Input 
+        <form className="flex flex-col gap-6" onSubmit={onSubmit}>
+          <Input
             type="email"
             placeholder="Email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" 
-            data-aos="zoom-in" // Add AOS animation
+            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+            className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-4 focus:ring-indigo-500 transition"
+            data-aos="zoom-in"
           />
 
-          <Input 
+          <Input
             type="password"
             placeholder="Password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" 
-            data-aos="zoom-in" // Add AOS animation
+            pattern="^.*$"
+            className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-4 focus:ring-indigo-500 transition"
+            data-aos="zoom-in"
           />
 
-          <Link 
-            to="/forgot-password" 
-            className='text-white opacity-85 font-medium'
-            data-aos="fade-in" // Add AOS animation
+          <Link
+            to="/forgot-password"
+            className="text-indigo-700 text-sm font-semibold hover:text-indigo-900 underline text-right"
+            data-aos="fade-in"
           >
-            forgot password? <span className='underline text-blue-600 font-semibold'>Reset Password</span>
+            Forgot password? <span>Reset Password</span>
           </Link>
 
-          <button 
-            type='submit' 
-            className='btn px-5 py-2 font-normal outline-none border border-white rounded-sm text-xl text-white hover:text-black hover:bg-white transition-all ease-in w-full max-w-[750px]'
-            data-aos="slide-up" // Add AOS animation
+          <button
+            type="submit"
+            className="w-full mt-2 bg-indigo-700 hover:bg-indigo-800 active:bg-indigo-900 text-white py-3 rounded-lg font-semibold text-lg shadow-lg transition duration-300 ease-in-out"
+            data-aos="slide-up"
           >
             Submit
           </button>
