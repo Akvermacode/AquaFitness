@@ -22,7 +22,8 @@ const Modal = () => {
               This application is deployed on Render, which may cause slower performance. 
               If you experience delays, please visit my{" "}
               <a
-                href="https://github.com/abhishekrajput-web/gym-master"
+                //href="https://github.com/abhishekrajput-web/gym-master"
+                 href="https://github.com/Akvermacode/AquaFitness"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 underline"
