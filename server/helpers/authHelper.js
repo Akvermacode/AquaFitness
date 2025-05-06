@@ -18,6 +18,8 @@ const comparePassword = async (password, hashedPassword) => {
         return bcrypt.compare(password, hashedPassword)
     } catch (error) {
         console.log(error);
+        
+
     }
 }
 
